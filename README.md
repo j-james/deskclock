@@ -1,6 +1,6 @@
 <h1 align=center> deskclock </h1>
 
-<p align="center">
+<p align=center>
   :red_circle: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: <br>
   :black_large_square: :black_large_square: :red_circle: :black_large_square: :black_large_square: :red_circle: :red_circle: :red_circle: :black_large_square: :black_large_square: :black_large_square: :red_circle: :red_circle: :red_circle: :black_large_square: :red_circle: :red_circle: :red_circle: :black_large_square: <br>
   :black_large_square: :black_large_square: :red_circle: :black_large_square: :black_large_square: :red_circle: :black_large_square: :red_circle: :black_large_square: :red_circle: :black_large_square: :black_large_square: :black_large_square: :red_circle: :black_large_square: :red_circle: :black_large_square: :black_large_square: :black_large_square: <br>
