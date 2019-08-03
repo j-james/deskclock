@@ -10,6 +10,10 @@
   :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square: :black_large_square:
 </p>
 
+## :construction: Issues
+- [ ] Alarm status isn't saved
+- [ ] Alarm turns off after only ten seconds
+
 ## :sparkles: Function
 This code is a modification of [SpikenzieLabs' Arduino sketch](http://www.spikenzielabs.com/Downloadables/STDESKCLOCK/STDC_SketchV1.zip) for the Solder:Time LTE kit.\
 Modified functionality includes an alarm that doesn't turn off after ten seconds.
