@@ -31,9 +31,7 @@ void loop()
     if (bval)
     {
         if (ALARMON)
-        {
             CheckAlarm();
-        }
         if (ALARM1FLAG)
         {
             ALARM1FLAG = false;
@@ -50,9 +48,8 @@ void loop()
                 JustWokeUpFlag2 = true;                                     //  Used to supress "Time" text from showing when waking up.
             }
             else
-            {
                 NextStateRequest = true;
-            }
+
             //  SUBSTATE = 99;
             while (bval)
             {
@@ -109,9 +106,7 @@ void loop()
         }
     }
     else
-    {
         blinkON = true;                                                     //  Not blinking, just leave the LEDs lit
-    }
 
     //  *****************************************************************************************************************
     //                                            Main Loop - State Machine

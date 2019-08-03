@@ -11,9 +11,7 @@ void LEDupdateTWO()                                                         //  
         Mcolumn = Mcolumn+1;                                                //  Prep for next column
 
         if (Mcolumn >19)
-        {
             Mcolumn =0;
-        }
         PORTB = (PORTB & B10000000);                                        //  Clear last column
         PORTC = (PORTC & B11110000) | B00001111;
 
@@ -40,14 +38,10 @@ void LEDupdateTWO()                                                         //  
         }
 
         if (Mcolumn <16)                                                    //  Matrix column (from 0 to 19)
-        {
             delayMicroseconds(120);
-        }
         /*
         else
-        {
             bitClear(PORTB,ROWBITINDEX);
-        }
         */
         ROWBITINDEX = ROWBITINDEX +1;
     }
@@ -84,9 +78,7 @@ void LEDupdate()                                                            //  
     Mcolumn = Mcolumn+1;                                                    //  Prep for next column
 
     if (Mcolumn >19)
-    {
         Mcolumn =0;
-    }
 }
 
 //  *******************************************************************************************************************
@@ -119,9 +111,7 @@ void LEDupdateTHREE()                                                       //  
         Mcolumn = Mcolumn+1;                                                //  Prep for next column
 
         if (Mcolumn >19)
-        {
             Mcolumn =0;
-        }
 
         //  PORTB = (PORTB & B10000000);                                    //  Clear last column
         PORTB = (PORTB & B10000000);

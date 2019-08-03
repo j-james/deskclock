@@ -19,7 +19,5 @@ void I2C_RX(byte devicerx, byte regaddrx)                                   // R
 
     byte c = 0;
     if (Wire.available())
-    {
         i2cData = Wire.read();
-    }
 }

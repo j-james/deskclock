@@ -84,9 +84,7 @@ void setup()
     delay(300);
     bval = !digitalRead(SETBUTTON);
     if (bval)
-    {
         lamptest();
-    }
 
     displayString("v1.0");
     delay(1500);

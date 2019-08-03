@@ -51,9 +51,7 @@ void checkDate()
 
     temp = (i2cData & B00010000) >> 4;
     if (temp)
-    {
         MonthCode = MonthCode +10;                                          //  Convert BCD month into interger month
-    }
 
     I2C_RX(RTCDS1337,RTC_DATE);
     DateOnes = i2cData & B00001111;
@@ -79,9 +77,7 @@ void settimeNEW(uint8_t setselect)                                          // b
                 MinOnes = 0;
                 MinTens = MinTens +1;
                 if (MinTens >5)
-                {
                     MinTens = 0;
-                }
                 //  temp = (MinTens << 4) + MinOnes;
                 //  I2C_TX(RTCDS1337,RTC_MIN,temp);
             }
@@ -100,9 +96,7 @@ void settimeNEW(uint8_t setselect)                                          // b
                     HourTens = 1;
                 }
                 if ((HourOnes ==2) &&  (HourTens == 1))
-                {
                     PM_NotAM_flag = !PM_NotAM_flag;
-                }
                 if ((HourOnes >2) &&  (HourTens == 1))
                 {
                     //  PM_NotAM_flag = !PM_NotAM_flag;
@@ -125,9 +119,7 @@ void settimeNEW(uint8_t setselect)                                          // b
             }                                                               //  24 hours mode increment - E
             temp = (HourTens << 4) + HourOnes;
             if (TH_Not24_flag)
-            {
                 bitWrite(temp, 5, PM_NotAM_flag);
-            }
             bitWrite(temp, 6, TH_Not24_flag);
             I2C_TX(RTCDS1337,RTC_HOUR,temp);
             break;
@@ -135,9 +127,7 @@ void settimeNEW(uint8_t setselect)                                          // b
         case 3:
             Days = Days +1 ;
             if (Days>7)
-            {
                 Days = 1;
-            }
             temp = Days & B00000111;
             I2C_TX(RTCDS1337,RTC_DAY,temp);
             break;
@@ -146,9 +136,7 @@ void settimeNEW(uint8_t setselect)                                          // b
             temp = 0;
             MonthCode = MonthCode +1 ;
             if (MonthCode >12)
-            {
                 MonthCode = 1;
-            }
             if (MonthCode>9)
             {
                 temp = MonthCode - 10;
@@ -156,9 +144,7 @@ void settimeNEW(uint8_t setselect)                                          // b
                 bitSet(temp, 4);                                            //  Convert int to BCD
             }
             else
-            {
                 temp = MonthCode & B00001111;
-            }
             I2C_TX(RTCDS1337,RTC_MONTH,temp);
             break;
 
@@ -285,13 +271,9 @@ void EnableAlarm1(boolean onoff)                                            //  
     temp =i2cData;
 
     if (onoff)
-    {
         bitSet(temp, 0);
-    }
     else
-    {
         bitClear(temp, 0);
-    }
     I2C_TX(RTCDS1337,RTCCONT,temp);
 
     I2C_RX(RTCDS1337,RTCSTATUS);                                            //  Clear Alarm RTC internal Alarm Flag
@@ -316,9 +298,7 @@ void setAlarm(uint8_t setselect)                                            //  
                 AMinOnes = 0;
                 AMinTens = AMinTens +1;
                 if (AMinTens >5)
-                {
                     AMinTens = 0;
-                }
             }
             temp = (AMinTens << 4) + AMinOnes;
             I2C_TX(RTCDS1337,RTC_ALARM1MIN,temp);
@@ -334,9 +314,7 @@ void setAlarm(uint8_t setselect)                                            //  
                     AHourTens = 1;
                 }
                 if ((AHourOnes ==2) &&  (AHourTens == 1))
-                {
                     A_PM_NotAM_flag = !A_PM_NotAM_flag;
-                }
                 if ((AHourOnes >2) &&  (AHourTens == 1))
                 {
                     //  PM_NotAM_flag = !PM_NotAM_flag;
@@ -364,23 +342,17 @@ void setAlarm(uint8_t setselect)                                            //  
                 AHourOnes = 0;
                 AHourTens = AHourTens +1;
                 if ((AHourTens >1) && (A_TH_Not24_flag))
-                {
                     AHourTens = 0;
-                }
                 else
                 {
                     if (AHourTens >2)
-                    {
                         AHourTens = 0;
-                    }
                 }
             }
             */
             temp = (AHourTens << 4) + AHourOnes;
             if (A_TH_Not24_flag)
-            {
                 bitWrite(temp, 5, A_PM_NotAM_flag);
-            }
             bitWrite(temp, 6, A_TH_Not24_flag);
             I2C_TX(RTCDS1337,RTC_ALARM1HOUR,temp);
             break;
@@ -424,35 +396,23 @@ void TwelveTwentyFourConvert()
             {
                 PM_NotAM_flag = true;                                       //  it is in the PM
                 if (temphours> 12)
-                {
                     temphours = temphours - 12;                             //  Convert from 13:00 .... 23:00 to 1:00 ... 11:00 [Go from 23:59 / 13:00 to 12:00 to 1:00] ?
-                }
                 else
-                {
                     temphours = temphours;                                  //  do nothing it is 12:00
-                }
             }
             else
-            {
                 PM_NotAM_flag = false;                                      //  it is in the AM - No other conversion needed
-            }
             if (temphours == 0)
-            {
                 temphours = 12;
-            }
         }
         else //  ---------------- 12 -> 24                                  //  Convert into 24 hour clock
         {
             if ((PM_NotAM_flag == false) && (temphours == 12))              //  AM only check for 00 hours
-            {
                 temphours = 0;
-            }
             if (PM_NotAM_flag == true)
             {                                                               //  PM conversion
                 if (temphours != 12)                                        //  Leave 12 as 12 in 24h time
-                {
                     temphours = temphours + 12;
-                }
             }
         }
 
@@ -464,9 +424,7 @@ void TwelveTwentyFourConvert()
         //  ---
         temp = (HourTens << 4) + HourOnes;
         if (TH_Not24_flag)
-        {
             bitWrite(temp, 5, PM_NotAM_flag);
-        }
 
         bitWrite(temp, 6, TH_Not24_flag);
         I2C_TX(RTCDS1337,RTC_HOUR,temp);
